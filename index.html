@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen | 個人 IP 與大學四年成果展示</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar & glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200/60 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    AC
+                </div>
+                <div>
+                    <span class="font-bold text-lg text-slate-900 block leading-tight">Alex Chen</span>
+                    <span class="text-xs text-slate-500 font-medium">CS & Innovation IP</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                <a href="#about" class="hover:text-brand-600 transition-colors">關於我</a>
+                <a href="#timeline" class="hover:text-brand-600 transition-colors">大學四年歷程</a>
+                <a href="#portfolio" class="hover:text-brand-600 transition-colors">專案與作業</a>
+                <a href="#skills" class="hover:text-brand-600 transition-colors">技能專長</a>
+                <a href="#contact" class="hover:text-brand-600 transition-colors">聯絡我</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://github.com" target="_blank" class="text-slate-600 hover:text-slate-900 transition-colors text-lg" aria-label="GitHub Profile">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#contact" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium rounded-xl shadow-sm hover:shadow transition-all">
+                    取得聯繫
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="Toggle menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3 shadow-lg">
+            <a href="#about" class="block text-slate-600 hover:text-brand-600 font-medium py-1">關於我</a>
+            <a href="#timeline" class="block text-slate-600 hover:text-brand-600 font-medium py-1">大學四年歷程</a>
+            <a href="#portfolio" class="block text-slate-600 hover:text-brand-600 font-medium py-1">專案與作業</a>
+            <a href="#skills" class="block text-slate-600 hover:text-brand-600 font-medium py-1">技能專長</a>
+            <a href="#contact" class="block text-slate-600 hover:text-brand-600 font-medium py-1">聯絡我</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden relative bg-gradient-to-b from-brand-50/50 via-slate-50 to-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7 space-y-6 text-center md:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs font-semibold tracking-wide uppercase">
+                        <span class="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
+                        <span>歡迎來到我的個人數位空間</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        用程式碼與創意，<br class="hidden sm:inline">打造 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-500">具影響力的產品</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 max-w-2xl font-normal mx-auto md:mx-0 leading-relaxed">
+                        我是陳冠廷 (Alex Chen)，主修資訊工程與數位創新。在這裡完整記錄我大學四年的專題研究、課程作業、實習專案與技術成長軌跡。
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+                        <a href="#portfolio" class="px-6 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-xl shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 transition-all flex items-center space-x-2">
+                            <span>探索作品集</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#timeline" class="px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-700 font-medium rounded-xl border border-slate-200 shadow-sm transition-all">
+                            瀏覽四年歷程
+                        </a>
+                    </div>
+                    <div class="pt-6 flex items-center justify-center md:justify-start space-x-6 text-slate-500">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-brand-600"></i>
+                            <span class="text-xs font-medium">GPA 3.9 / 4.0</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-brand-600"></i>
+                            <span class="text-xs font-medium">15+ 精選專案與作業</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-brand-600"></i>
+                            <span class="text-xs font-medium">前端與後端全端開發</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-5 flex justify-center">
+                    <div class="relative">
+                        <!-- Decorative glow -->
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-600 to-indigo-400 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+                        <div class="relative w-72 h-80 sm:w-80 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
+                            <img src="https://placehold.co/400x500/6366f1/ffffff?text=Alex+Chen" alt="Alex Chen Profile" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/e2e8f0/64748b?text=Photo'">
+                        </div>
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-medium">應屆畢業生</p>
+                                <p class="text-sm font-bold text-slate-800">資工系學士學位</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest uppercase text-brand-600 mb-3">About Me</h2>
+                <h3 class="text-3xl font-bold text-slate-900 tracking-tight">熱愛探索未知，致力於寫出高質量的程式碼</h3>
+                <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">全端開發能力</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        熟悉從前端介面設計（HTML/CSS/JS、Tailwind、React）到後端 API 架構（Node.js、Python FastAPI、SQL 資料庫）的完整開發生命週期。
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">專題與創新實作</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        大學期間參與多項大型專題與競賽，擅長將抽象需求轉化為具體的數位產品，注重使用者體驗（UX）與效能優化。
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">團隊協作與領導</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        曾擔任系學會幹部及多個專案團隊負責人，熟悉 Git 版本控制、Agile 開發流程與跨領域溝通協調技巧。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section (大學四年歷程) -->
+    <section id="timeline" class="py-20 bg-slate-50 border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest uppercase text-brand-600 mb-3">University Journey</h2>
+                <h3 class="text-3xl font-bold text-slate-900 tracking-tight">大學四年成長歷程</h3>
+                <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-600 mt-4">從程式新手到能夠獨立架構產品的轉變與里程碑。</p>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 transform -translate-x-1/2"></div>
+
+                <!-- Year 1 -->
+                <div class="relative mb-12 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12 w-full pl-12 md:text-right">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-700 text-xs font-bold rounded-full mb-2">大一 2022-2023</span>
+                            <h4 class="text-lg font-bold text-slate-900 mb-1">奠定基礎與程式啟蒙</h4>
+                            <p class="text-xs text-slate-500 mb-3">修習課程：物件導向程式設計、微積分、線性代數</p>
+                            <p class="text-slate-600 text-sm">學習 C++ 與 Python 基礎語法，培養運算思維與邏輯解題能力。加入系上程式設計研究社，完成第一個文字介面小遊戲。</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center transform -translate-x-1/2 shadow-lg z-10 text-xs font-bold">
+                        1
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 w-full hidden md:block"></div>
+                </div>
+
+                <!-- Year 2 -->
+                <div class="relative mb-12 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12 w-full hidden md:block"></div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center transform -translate-x-1/2 shadow-lg z-10 text-xs font-bold">
+                        2
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 w-full pl-12">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-700 text-xs font-bold rounded-full mb-2">大二 2023-2024</span>
+                            <h4 class="text-lg font-bold text-slate-900 mb-1">資料結構與網頁初探</h4>
+                            <p class="text-xs text-slate-500 mb-3">修習課程：資料結構、演算法、網頁設計概論</p>
+                            <p class="text-slate-600 text-sm">深入理解樹狀結構、圖論與排序演算法。開始接觸 HTML/CSS/JavaScript，並完成個人第一個響應式作品集網頁作業。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year 3 -->
+                <div class="relative mb-12 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12 w-full pl-12 md:text-right">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-700 text-xs font-bold rounded-full mb-2">大三 2024-2025</span>
+                            <h4 class="text-lg font-bold text-slate-900 mb-1">系統開發與校外實習</h4>
+                            <p class="text-xs text-slate-500 mb-3">修習課程：資料庫系統、軟體工程、作業系統</p>
+                            <p class="text-slate-600 text-sm">參與暑期軟體工程實習，接觸企業級專案開發流程。主導期末大型軟體工程專案，建立全端架構概念與 Git 協作模式。</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center transform -translate-x-1/2 shadow-lg z-10 text-xs font-bold">
+                        3
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 w-full hidden md:block"></div>
+                </div>
+
+                <!-- Year 4 -->
+                <div class="relative flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12 w-full hidden md:block"></div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center transform -translate-x-1/2 shadow-lg z-10 text-xs font-bold">
+                        4
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 w-full pl-12">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-700 text-xs font-bold rounded-full mb-2">大四 2025-2026</span>
+                            <h4 class="text-lg font-bold text-slate-900 mb-1">畢業專題與職涯衝刺</h4>
+                            <p class="text-xs text-slate-500 mb-3">修習課程：畢業專題製作、雲端運算應用</p>
+                            <p class="text-slate-600 text-sm">完成跨領域 AI 智慧助理畢業專題，獲得校內專題競賽佳作。積極準備求職，並建立此個人 IP 網站向外界展示成果。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio & Homework Grid Section -->
+    <section id="portfolio" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold tracking-widest uppercase text-brand-600 mb-3">Portfolio & Works</h2>
+                <h3 class="text-3xl font-bold text-slate-900 tracking-tight">專題、專案與精選作業展示</h3>
+                <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-600 mt-4">點擊下方分類按鈕進行篩選，或點擊卡片查看詳細說明與原始碼。</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12">
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium transition-all bg-brand-600 text-white shadow-sm" data-filter="all">
+                    全部展示
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="capstone">
+                    大專題
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="homework">
+                    課程作業
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="personal">
+                    個人專案
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="internship">
+                    實習經驗
+                </button>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="portfolio-item bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group" data-category="capstone">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://placehold.co/600x400/6366f1/ffffff?text=AI+Smart+Assistant" alt="AI 智慧學習助理" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Project'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-brand-600/90 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">大專題</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">AI 智慧學習與問答助理</h4>
+                            <p class="text-slate-600 text-sm line-clamp-3 mb-4">
+                                結合 LangChain 與 LLM API 開發的智慧文件問答系統，支援多格式文檔上傳、自動摘要與語意檢索，獲得校內專題競賽佳作。
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Python</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">FastAPI</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">React</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Tailwind</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                            <button onclick="openModal('capstone1')" class="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center space-x-1">
+                                <span>詳細介紹</span>
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                            <div class="flex space-x-3">
+                                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-slate-700 text-sm" aria-label="GitHub repository"><i class="fab fa-github"></i></a>
+                                <a href="https://example.com" target="_blank" class="text-slate-400 hover:text-brand-600 text-sm" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group" data-category="homework">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://placehold.co/600x400/4f46e5/ffffff?text=E-Commerce+Store" alt="電商平台前端作業" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Homework'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-indigo-600/90 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">課程作業</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">響應式電商購物平台</h4>
+                            <p class="text-slate-600 text-sm line-clamp-3 mb-4">
+                                網頁設計概論期末作業。具備商品篩選、購物車狀態管理、即時金額計算與 RWD 行動裝置適應，獲得滿分評價。
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">HTML5</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Tailwind CSS</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">JavaScript</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                            <button onclick="openModal('homework1')" class="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center space-x-1">
+                                <span>詳細介紹</span>
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                            <div class="flex space-x-3">
+                                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-slate-700 text-sm" aria-label="GitHub repository"><i class="fab fa-github"></i></a>
+                                <a href="https://example.com" target="_blank" class="text-slate-400 hover:text-brand-600 text-sm" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group" data-category="personal">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Task+Manager" alt="任務管理系統" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Project'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-blue-600/90 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">個人專案</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Kanban 任務管理系統</h4>
+                            <p class="text-slate-600 text-sm line-clamp-3 mb-4">
+                                個人利用課餘時間開發的專案管理工具，支援拖曳互動（Drag & Drop）、標籤分類、LocalStorage 狀態儲存與Dark Mode。
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">JavaScript</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">HTML/CSS</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">LocalStorage</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                            <button onclick="openModal('personal1')" class="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center space-x-1">
+                                <span>詳細介紹</span>
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                            <div class="flex space-x-3">
+                                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-slate-700 text-sm" aria-label="GitHub repository"><i class="fab fa-github"></i></a>
+                                <a href="https://example.com" target="_blank" class="text-slate-400 hover:text-brand-600 text-sm" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group" data-category="internship">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://placehold.co/600x400/0ea5e9/ffffff?text=Dashboard+System" alt="企業內部儀表板" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Internship'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-sky-600/90 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">實習經驗</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">企業內部數據儀表板開發</h4>
+                            <p class="text-slate-600 text-sm line-clamp-3 mb-4">
+                                於雲端科技公司實習期間參與開發之數據視覺化後台，整合 Chart.js 呈現即時營運指標與圖表分析。
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Vue.js</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Chart.js</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">RESTful API</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                            <button onclick="openModal('intern1')" class="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center space-x-1">
+                                <span>詳細介紹</span>
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                            <div class="flex space-x-3">
+                                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-slate-700 text-sm" aria-label="GitHub repository"><i class="fab fa-github"></i></a>
+                                <a href="https://example.com" target="_blank" class="text-slate-400 hover:text-brand-600 text-sm" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-item bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group" data-category="homework">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Data+Structure+Visualizer" alt="資料結構視覺化作業" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Homework'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-indigo-600/90 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">課程作業</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">資料結構演算法視覺化器</h4>
+                            <p class="text-slate-600 text-sm line-clamp-3 mb-4">
+                                資料結構課程期中作業。動 態展示排序演算法（氣泡排序、合併排序）與二元搜尋樹的節點新增刪除過程。
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">JavaScript</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Canvas API</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Algorithms</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                            <button onclick="openModal('homework2')" class="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center space-x-1">
+                                <span>詳細介紹</span>
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                            <div class="flex space-x-3">
+                                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-slate-700 text-sm" aria-label="GitHub repository"><i class="fab fa-github"></i></a>
+                                <a href="https://example.com" target="_blank" class="text-slate-400 hover:text-brand-600 text-sm" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-item bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group" data-category="personal">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://placehold.co/600x400/6366f1/ffffff?text=Blog+Platform" alt="技術部落格平台" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Project'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-blue-600/90 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">個人專案</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Markdown 技術分享部落格</h4>
+                            <p class="text-slate-600 text-sm line-clamp-3 mb-4">
+                                記錄大學四年程式學習筆記的個人部落格，支援 Markdown 語法解析、程式碼高亮顯示與分類標籤檢索。
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Node.js</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Markdown</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">Tailwind</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                            <button onclick="openModal('personal2')" class="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center space-x-1">
+                                <span>詳細介紹</span>
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                            <div class="flex space-x-3">
+                                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-slate-700 text-sm" aria-label="GitHub repository"><i class="fab fa-github"></i></a>
+                                <a href="https://example.com" target="_blank" class="text-slate-400 hover:text-brand-600 text-sm" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-slate-50 border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest uppercase text-brand-600 mb-3">Technical Skills</h2>
+                <h3 class="text-3xl font-bold text-slate-900 tracking-tight">專業技能與工具掌握</h3>
+                <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Frontend -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center font-bold mb-4">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-4">前端開發</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>HTML5 / CSS3 / Tailwind</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>JavaScript (ES6+)</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>React.js / Vue.js</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center font-bold mb-4">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-4">後端開發</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>Node.js / Express</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>Python / FastAPI</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>SQL / MongoDB</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & DevOps -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center font-bold mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-4">工具與協作</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>Git & GitHub</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>Docker / CI/CD</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>Postman / VS Code</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design & Soft Skills -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center font-bold mb-4">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-4">設計與軟實力</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>Figma UI/UX 設計</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>敏捷開發 (Scrum)</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                <span>團隊溝通與簡報</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-brand-600 h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest uppercase text-brand-600 mb-3">Get in Touch</h2>
+                <h3 class="text-3xl font-bold text-slate-900 tracking-tight">與我聯絡</h3>
+                <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-600 mt-4">無論是工作機會、專案合作或技術交流，歡迎隨時與我聯繫！</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 max-w-5xl mx-auto">
+                <div class="md:col-span-5 space-y-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center shrink-0">
+                            <i class="fas fa-envelope text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wide">電子郵件</h4>
+                            <a href="mailto:alex.chen.dev@example.com" class="text-lg font-semibold text-slate-900 hover:text-brand-600 transition-colors">alex.chen.dev@example.com</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center shrink-0">
+                            <i class="fas fa-map-marker-alt text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wide">所在地點</h4>
+                            <p class="text-lg font-semibold text-slate-900">台灣，台北市</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center shrink-0">
+                            <i class="fas fa-share-alt text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wide">社群平台</h4>
+                            <div class="flex space-x-4 mt-2">
+                                <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 flex items-center justify-center transition-all" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 flex items-center justify-center transition-all" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://twitter.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 flex items-center justify-center transition-all" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-slate-700 mb-2">您的姓名</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-slate-700 mb-2">電子郵件</label>
+                            <input type="email" id="email" required class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-slate-700 mb-2">留言內容</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-xl shadow-md transition-all">
+                            發送訊息
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <p class="text-sm font-medium">© 2026 Alex Chen. All rights reserved. Built with HTML, Tailwind CSS & JS.</p>
+            <div class="flex space-x-6 text-sm">
+                <a href="#hero" class="hover:text-white transition-colors">回到頂部 <i class="fas fa-arrow-up ml-1 text-xs"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div id="modal-content" class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-transform duration-300">
+            <div class="relative h-64 bg-slate-100">
+                <img id="modal-img" src="" alt="Project Image" class="w-full h-full object-cover">
+                <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-900/60 text-white flex items-center justify-center hover:bg-slate-900 transition-colors" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-8 space-y-6">
+                <div>
+                    <span id="modal-category" class="px-3 py-1 bg-brand-100 text-brand-700 text-xs font-bold rounded-full"></span>
+                    <h3 id="modal-title" class="text-2xl font-bold text-slate-900 mt-2"></h3>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">專案詳細說明</h4>
+                    <p id="modal-desc" class="text-slate-600 leading-relaxed text-sm"></p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">使用技術與架構</h4>
+                    <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+                </div>
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-4">
+                    <a id="modal-github" href="#" target="_blank" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-xl text-sm transition-colors flex items-center space-x-2">
+                        <i class="fab fa-github"></i>
+                        <span>查看原始碼</span>
+                    </a>
+                    <a id="modal-demo" href="#" target="_blank" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-xl text-sm transition-colors flex items-center space-x-2">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>線上預覽</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-6 py-3 rounded-xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 text-sm font-medium flex items-center space-x-2">
+        <i class="fas fa-check-circle text-emerald-400"></i>
+        <span id="toast-msg">訊息已成功發送！</span>
+    </div>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Portfolio Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active styles from all buttons
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                });
+                // Add active styles to clicked button
+                btn.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                btn.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Project Modal Database
+        const projectData = {
+            'capstone1': {
+                title: 'AI 智慧學習與問答助理',
+                category: '大專題',
+                img: 'https://placehold.co/600x400/6366f1/ffffff?text=AI+Smart+Assistant',
+                desc: '本專題針對大學生日常文獻閱讀與考前複習需求，開發具備語意理解能力的 AI 助理。後端採用 Python FastAPI 架構，並串接 LangChain 與 OpenAI API 進行向量檢索增強生成（RAG）。前端則以 React 與 Tailwind CSS 打造直覺的對話介面與筆記匯出功能，最終獲得校內畢業專題競賽佳作。',
+                tags: ['Python', 'FastAPI', 'React', 'Tailwind', 'LangChain', 'OpenAI API'],
+                github: 'https://github.com',
+                demo: 'https://example.com'
+            },
+            'homework1': {
+                title: '響應式電商購物平台',
+                category: '課程作業',
+                img: 'https://placehold.co/600x400/4f46e5/ffffff?text=E-Commerce+Store',
+                desc: '網頁設計概論課程期末專案。實作完整的電商前端介面，包含多條件商品搜尋、分類過濾、動態購物車數量增減、優惠券折抵計算以及訂單結帳表單驗證。全面採用 Tailwind CSS 確保在手機、平板與桌上型電腦皆有完美的排版與流暢的操作體驗。',
+                tags: ['HTML5', 'Tailwind CSS', 'JavaScript', 'Responsive Design'],
+                github: 'https://github.com',
+                demo: 'https://example.com'
+            },
+            'personal1': {
+                title: 'Kanban 任務管理系統',
+                category: '個人專案',
+                img: 'https://placehold.co/600x400/3b82f6/ffffff?text=Task+Manager',
+                desc: '為了改善個人日常課業與專案時程規劃所開發的看板管理工具。支援專案清單自定義、任務拖曳（Drag and Drop）調整狀態、期限倒數提醒以及透過 Browser LocalStorage 進行資料持久化，無需後端資料庫即可單機運行。',
+                tags: ['JavaScript', 'HTML/CSS', 'LocalStorage', 'Drag & Drop API'],
+                github: 'https://github.com',
+                demo: 'https://example.com'
+            },
+            'intern1': {
+                title: '企業內部數據儀表板開發',
+                category: '實習經驗',
+                img: 'https://placehold.co/600x400/0ea5e9/ffffff?text=Dashboard+System',
+                desc: '於暑期實習期間參與開發的企業營運數據視覺化後台。主要負責前端元件開發與圖表數據串接，使用 Vue.js 配合 Chart.js 呈現即時流量、轉換率與用戶活躍度指標，並優化 API 請求緩存機制，提升頁面加載速度 30%。',
+                tags: ['Vue.js', 'Chart.js', 'RESTful API', 'Git Flow'],
+                github: 'https://github.com',
+                demo: 'https://example.com'
+            },
+            'homework2': {
+                title: '資料結構演算法視覺化器',
+                category: '課程作業',
+                img: 'https://placehold.co/600x400/8b5cf6/ffffff?text=Data+Structure+Visualizer',
+                desc: '資料結構期中實作作業。利用 HTML5 Canvas 與原生 JavaScript 動畫模擬排序演算法（如泡沫排序、快速排序）與二元搜尋樹的運作過程。讓抽象的演算法邏輯能夠以視覺化動畫呈現，加深對程式複雜度與指標操作的理解。',
+                tags: ['JavaScript', 'Canvas API', 'Algorithms', 'Data Structures'],
+                github: 'https://github.com',
+                demo: 'https://example.com'
+            },
+            'personal2': {
+                title: 'Markdown 技術分享部落格',
+                category: '個人專案',
+                img: 'https://placehold.co/600x400/6366f1/ffffff?text=Blog+Platform',
+                desc: '記錄大學四年所有程式心得與筆記的個人知識庫網站。後端使用 Node.js 讀取 Markdown 原始檔，經過解析後渲染成靜態網頁與文章列表，支援程式碼高亮、文章分類標籤與關鍵字搜尋功能。',
+                tags: ['Node.js', 'Markdown', 'Tailwind CSS', 'Static Site'],
+                github: 'https://github.com',
+                demo: 'https://example.com'
+            }
+        };
+
+        const modal = document.getElementById('project-modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalImg = document.getElementById('modal-img');
+        const modalCategory = document.getElementById('modal-category');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalTags = document.getElementById('modal-tags');
+        const modalGithub = document.getElementById('modal-github');
+        const modalDemo = document.getElementById('modal-demo');
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+
+            modalImg.src = data.img;
+            modalCategory.textContent = data.category;
+            modalTitle.textContent = data.title;
+            modalDesc.textContent = data.desc;
+            modalGithub.href = data.github;
+            modalDemo.href = data.demo;
+
+            modalTags.innerHTML = '';
+            data.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg';
+                span.textContent = tag;
+                modalTags.appendChild(span);
+            });
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Contact Form Submission & Toast
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            
+            // Show toast
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.textContent = `感謝 ${name}！您的訊息已成功送出。`;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            // Reset form
+            document.getElementById('contact-form').reset();
+
+            // Hide toast after 4 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
