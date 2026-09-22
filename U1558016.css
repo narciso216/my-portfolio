@@ -1,0 +1,38 @@
+body {
+    background: #f0ffff;
+}
+
+h1 {
+    color: #D6ADA7;
+}
+
+a:link {
+    color: #40e0d0;
+}
+
+a:hover {
+    color: #fa8072;
+}
+
+/* 圖片展示區塊排版 */
+.image-gallery {
+    display: flex;
+    gap: 15px; /* 圖片之間的間距 */
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* 圖片基本樣式與動態反應 */
+.image-gallery img {
+    width: 150px;       /* 統一圖片寬度 */
+    height: 150px;      /* 統一圖片高度 */
+    object-fit: cover;  /* 避免圖片變形 */
+    border-radius: 8px; /* 圓角效果 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 動態反應過渡效果 */
+}
+
+/* 滑鼠移過去時的動態反應（放大與陰影） */
+.image-gallery img:hover {
+    transform: scale(1.08); /* 微微放大 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 加上陰影立體感 */
+}
