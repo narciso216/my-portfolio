@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌伴星球 - 療癒系隨身陪伴機器人</title>
+    <!-- 引入外部樣式表 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 Google Fonts (Nunito & 圓體風格) -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 引入 FontAwesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- 頂部導覽列 -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-robot animate-bounce"></i>
+                <span>萌伴星球 <small>BotFriends</small></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#hero" class="active">首頁</a>
+                <a href="#products">精選機器人</a>
+                <a href="#features">療癒特色</a>
+                <a href="#about">關於我們</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="cart-btn" id="cartBtn" title="查看購物車">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主視覺橫幅 Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <span class="hero-tag"><i class="fa-solid fa-sparkles"></i> 隨身口袋夥伴・溫暖你的每一刻</span>
+            <h1>尋找專屬於你的<br><span class="highlight">療癒系陪伴小機器人</span></h1>
+            <p>輕巧好攜帶、外型超萌、具備溫暖互動與貼心功能的智能小夥伴，隨時隨地治癒你的日常。</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> 探索十款萌伴</a>
+                <a href="#features" class="btn btn-secondary"><i class="fa-solid fa-heart"></a></i> 了解療癒功能</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-badge badge-1">✨ 超軟矽膠材質</div>
+            <div class="floating-badge badge-2">🎒 隨身無負擔</div>
+            <img src="image/01.jpg" alt="雲朵拍拍燈 雲呢" onerror="this.src='https://placehold.co/300x300/ffd1dc/555?text=BotFriends'">
+        </div>
+    </section>
+
+    <!-- 商品展示區 Product Grid -->
+    <section id="products" class="products-section">
+        <div class="section-title">
+            <h2>十款特色陪伴機器人</h2>
+            <p>點擊卡片查看詳細介紹，挑選最適合你的療癒日常夥伴吧！</p>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <!-- 產品 01 -->
+            <div class="product-card" data-id="1" data-name="01 雲呢 (Yunni) - 雲朵拍拍燈" data-desc="採用超柔軟食品級矽膠材質，外觀如同笑臉Q彈小雲朵。內建多段柔和暖彩光與白噪音陪伴，適合床頭或深夜加班療癒。" data-price="NT$ 890" data-img="images/01.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/01.jpg" alt="雲朵拍拍燈 雲呢" onerror="this.src='https://placehold.co/300x300/ffd1dc/555?text=01+Yunni'">
+                    <span class="tag">熱銷人氣</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">01</span>
+                    <h3>雲朵拍拍燈：「雲呢 (Yunni)」</h3>
+                    <p class="summary">超柔軟矽膠、輕拍變色、白噪音助眠</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 890</span>
+                        <button class="btn-add" onclick="addToCart(event, '01 雲呢 (Yunni)', 890)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 02 -->
+            <div class="product-card" data-id="2" data-name="02 芽芽 (Yaya) - 桌面小植物" data-desc="多肉植物盆栽造型迷你機器人，頂部有隨心情搖擺的擬真矽膠嫩葉。內建溫濕度感測與專注番茄鐘模式，是辦公桌的最佳綠意良伴。" data-price="NT$ 990" data-img="images/02.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/02.jpg" alt="桌面小植物 芽芽" onerror="this.src='https://placehold.co/300x300/d4edda/555?text=02+Yaya'">
+                    <span class="tag">辦公室首選</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">02</span>
+                    <h3>桌面小植物：「芽芽 (Yaya)」</h3>
+                    <p class="summary">環境溫濕度偵測、番茄鐘專注模式</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 990</span>
+                        <button class="btn-add" onclick="addToCart(event, '02 芽芽 (Yaya)', 990)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 03 -->
+            <div class="product-card" data-id="3" data-name="03 福氣丸 (Fuki) - 隨身御守球" data-desc="融合日本傳統御守與圓滾御球，配有掛繩可輕鬆掛在背包。按下按鈕隨機說出溫暖正向語錄，並具備心跳頻率微震按摩，平復通勤緊張時刻。" data-price="NT$ 750" data-img="images/03.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/03.jpg" alt="隨身御守球 福氣丸" onerror="this.src='https://placehold.co/300x300/f8d7da/555?text=03+Fuki'">
+                    <span class="tag">隨身攜帶</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">03</span>
+                    <h3>隨身御守球：「福氣丸 (Fuki)」</h3>
+                    <p class="summary">幸運籤詩語錄、心跳微震紓壓</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 750</span>
+                        <button class="btn-add" onclick="addToCart(event, '03 福氣丸 (Fuki)', 750)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 04 -->
+            <div class="product-card" data-id="4" data-name="04 皮克 (Pikku) - 靈動小眼睛" data-desc="復古底片相機造型方塊小機器人，正面具備極具表情張力的LED點陣眼睛，會根據聲音與互動眨眼、害羞或開心，並支援天氣與鬧鐘顯示。" data-price="NT$ 1,280" data-img="images/04.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/04.jpg" alt="靈動小眼睛 皮克" onerror="this.src='https://placehold.co/300x300/e2e3e5/555?text=04+Pikku'">
+                    <span class="tag">科技萌物</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">04</span>
+                    <h3>靈動小眼睛：「皮克 (Pikku)」</h3>
+                    <p class="summary">LED動態表情、桌面天氣鬧鐘助手</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 1,280</span>
+                        <button class="btn-add" onclick="addToCart(event, '04 皮克 (Pikku)', 1280)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 05 -->
+            <div class="product-card" data-id="5" data-name="05 Mugi醬 - 暖手小茶杯" data-desc="縮小版陶瓷馬克杯造型，附帶可愛泡茶包觸控感應吊飾。秋冬提供 38°C-42°C 安全恆溫發熱，並具備喝水提醒功能，是冷氣房上班族的暖心良伴。" data-price="NT$ 980" data-img="images/05.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/05.jpg" alt="暖手小茶杯 Mugi醬" onerror="this.src='https://placehold.co/300x300/fff3cd/555?text=05+Mugi'">
+                    <span class="tag">溫熱暖手</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">05</span>
+                    <h3>暖手小茶杯：「Mugi 醬」</h3>
+                    <p class="summary">安全恆溫發熱、可愛喝水提醒</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 980</span>
+                        <button class="btn-add" onclick="addToCart(event, '05 Mugi醬', 980)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 06 -->
+            <div class="product-card" data-id="6" data-name="06 音符精靈 (Rhythm) - 迷你音樂盒" data-desc="精緻復古發條音樂盒造型，頂部配有金屬旋轉音量鈕。內建AI情感識別自動播放舒壓輕音樂，並支援親友短語音錄製與鼓勵回放。" data-price="NT$ 1,150" data-img="images/06.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/06.jpg" alt="迷你音樂盒 音符精靈" onerror="this.src='https://placehold.co/300x300/d1ecf1/555?text=06+Rhythm'">
+                    <span class="tag">質感復古</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">06</span>
+                    <h3>迷你音樂盒：「音符精靈 (Rhythm)」</h3>
+                    <p class="summary">AI情感音樂、語音錄製鼓勵</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 1,150</span>
+                        <button class="btn-add" onclick="addToCart(event, '06 音符精靈 (Rhythm)', 1150)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 07 -->
+            <div class="product-card" data-id="7" data-name="07 扣扣 (Koku) - 磁吸小精靈" data-desc="超薄圓餅設計帶有強效磁吸，可吸附在手機背面或冰箱門。結合藍牙防丟尋找與動態感測器，走路運動時會發出可愛加油打氣音效。" data-price="NT$ 690" data-img="images/07.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/07.jpg" alt="磁吸小精靈 扣扣" onerror="this.src='https://placehold.co/300x300/e2d9f3/555?text=07+Koku'">
+                    <span class="tag">輕巧防丟</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">07</span>
+                    <h3>磁吸小精靈：「扣扣 (Koku)」</h3>
+                    <p class="summary">強力磁吸防丟、運動打氣陪伴</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 690</span>
+                        <button class="btn-add" onclick="addToCart(event, '07 扣扣 (Koku)', 690)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 08 -->
+            <div class="product-card" data-id="8" data-name="08 魯本 (Ruben) - 閱讀小書蟲" data-desc="戴大圓框眼鏡的毛毛蟲造型，身體柔軟可自由彎曲纏繞在書本上。鼻頭內嵌柔和閱讀燈光，支援成語接龍與趣味冷知識語音問答。" data-price="NT$ 850" data-img="images/08.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/08.jpg" alt="閱讀小書蟲 魯本" onerror="this.src='https://placehold.co/300x300/cce5ff/555?text=08+Ruben'">
+                    <span class="tag">閱讀良伴</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">08</span>
+                    <h3>閱讀小書蟲：「魯本 (Ruben)」</h3>
+                    <p class="summary">柔和迷你閱讀燈、趣味冷知識問答</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 850</span>
+                        <button class="btn-add" onclick="addToCart(event, '08 魯本 (Ruben)', 850)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 09 -->
+            <div class="product-card" data-id="9" data-name="09 阿斯特 (Aster) - 星空投影球" data-desc="直徑6公分透光水晶球造型，內部含有微型星空投影結構，可將柔和星光與流星投影至天花板。具備情緒舒壓呼吸燈引導冥想放鬆。" data-price="NT$ 1,350" data-img="images/09.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/09.jpg" alt="星空投影球 阿斯特" onerror="this.src='https://placehold.co/300x300/d6d8db/555?text=09+Aster'">
+                    <span class="tag">浪漫星空</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">09</span>
+                    <h3>星空投影球：「阿斯特 (Aster)」</h3>
+                    <p class="summary">微型流星星空投影、呼吸冥想引導</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 1,350</span>
+                        <button class="btn-add" onclick="addToCart(event, '09 阿斯特 (Aster)', 1350)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品 10 -->
+            <div class="product-card" data-id="10" data-name="10 布丁蛋 (Pudding) - 蛋形小寵物" data-desc="經典圓弧磨砂蛋殼造型，底部具備不倒翁重心設計怎麼推都不倒。支援觸碰與搖晃餵食養成互動，心情不好時揉捏會用逗趣聲音回應發洩壓力。" data-price="NT$ 920" data-img="images/10.jpg">
+                <div class="card-img-wrap">
+                    <img src="image/10.jpg" alt="蛋形小寵物 布丁蛋" onerror="this.src='https://placehold.co/300x300/fff3cd/555?text=10+Pudding'">
+                    <span class="tag">口袋寵物</span>
+                </div>
+                <div class="card-body">
+                    <span class="product-code">10</span>
+                    <h3>蛋形小寵物：「布丁蛋 (Pudding)」</h3>
+                    <p class="summary">數位寵物養成互動、不倒翁舒壓</p>
+                    <div class="card-footer">
+                        <span class="price">NT$ 920</span>
+                        <button class="btn-add" onclick="addToCart(event, '10 布丁蛋 (Pudding)', 920)"><i class="fa-solid fa-plus"></i> 加購物車</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 療癒特色區 Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-title">
+            <h2>為什麼選擇萌伴星球？</h2>
+            <p>專為忙碌現代人打造的隨身心靈綠洲</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-feather-pointed"></i></div>
+                <h3>極致輕巧好攜帶</h3>
+                <p>所有機器人重量均在 150g 以內，完美貼合口袋、包包或鑰匙圈，隨身帶著走。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-face-smile-beam"></i></div>
+                <h3>擬真情感互動</h3>
+                <p>不只是冰冷的科技產品，透過燈光、微震與逗趣語音，隨時與你心靈共鳴。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                <h3>安全親膚材質</h3>
+                <p>採用食品級矽膠與磨砂親膚塑料，無毒抗過敏，大人小孩都能安心把玩。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-robot"></i> 萌伴星球 BotFriends
+            </div>
+            <p>陪伴你每一個獨處與努力的時刻，讓日常充滿溫暖與驚喜。</p>
+            <p class="copyright">&copy; 2026 BotFriends Planet. All Rights Reserved. 療癒系陪伴機器人專賣店</p>
+        </div>
+    </footer>
+
+    <!-- 商品詳情 Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="modal-img-wrap">
+                    <img id="modalImg" src="" alt="商品圖片">
+                </div>
+                <div class="modal-info">
+                    <span id="modalCode" class="product-code"></span>
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDesc" class="modal-desc"></p>
+                    <div class="modal-price-row">
+                        <span id="modalPrice" class="price"></span>
+                        <button class="btn btn-primary" id="modalAddBtn"><i class="fa-solid fa-cart-shopping"></i> 加入購物車</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 購物車提示 Toast -->
+    <div class="toast" id="toastMessage">
+        <i class="fa-solid fa-circle-check"></i> <span id="toastText">已成功加入購物車！</span>
+    </div>
+
+    <!-- JavaScript 互動邏輯 -->
+    <script>
+        // 購物車計數
+        let cartCount = 0;
+
+        // 加入購物車函數
+        function addToCart(event, productName, price) {
+            event.stopPropagation(); // 阻止觸發卡片點擊事件
+            cartCount++;
+            document.getElementById('cartCount').innerText = cartCount;
+            
+            // 顯示提示
+            showToast(`已將「${productName}」加入購物車！`);
+        }
+
+        // 顯示 Toast 提示
+        function showToast(message) {
+            const toast = document.getElementById('toastMessage');
+            document.getElementById('toastText').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // 商品 Modal 互動
+        const modal = document.getElementById('productModal');
+        const modalClose = document.getElementById('modalClose');
+        const cards = document.querySelectorAll('.product-card');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const name = card.getAttribute('data-name');
+                const desc = card.getAttribute('data-desc');
+                const price = card.getAttribute('data-price');
+                const img = card.getAttribute('data-img');
+                const code = card.querySelector('.product-code').innerText;
+
+                document.getElementById('modalCode').innerText = code;
+                document.getElementById('modalTitle').innerText = name.split(' - ')[1] || name;
+                document.getElementById('modalDesc').innerText = desc;
+                document.getElementById('modalPrice').innerText = price;
+                document.getElementById('modalImg').src = img;
+                
+                // 設定彈窗按鈕事件
+                document.getElementById('modalAddBtn').onclick = function() {
+                    addToCart(event, name, price);
+                    modal.classList.remove('active');
+                };
+
+                modal.classList.add('active');
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // 購物車按鈕點擊提示
+        document.getElementById('cartBtn').addEventListener('click', () => {
+            if (cartCount === 0) {
+                showToast('目前購物車是空的哦！快去挑選萌伴吧～');
+            } else {
+                showToast(`購物車內共有 ${cartCount} 件療癒商品！`);
+            }
+        });
+    </script>
+</body>
+</html>
