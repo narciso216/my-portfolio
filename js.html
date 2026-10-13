@@ -1,25 +1,1183 @@
-<HTML>
-<HEAD>
-<title>今天練習的jave script</title>
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LÙMIA Studio | 極簡輕奢飾品．微光雅致項鍊</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Press+Start+2P&display=swap" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lumia: {
+                            bg: '#FBF9F6',         // 柔和極簡底色
+                            card: '#F5F1EB',       // 卡片背景色
+                            dark: '#1C1917',       // 質感黑
+                            stone: '#57534E',      // 次要文字灰
+                            gold: '#C5A059',       // 精致微光金
+                            goldlight: '#DFCB9B',  // 淺金
+                            sand: '#E7DFD5',       // 線條色
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif', 'Noto Serif TC'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif', 'PingFang TC'],
+                        pixel: ['"Press Start 2P"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FBF9F6;
+            color: #1C1917;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-serif-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FBF9F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E7DFD5;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C5A059;
+        }
 
-</HEAD>
-<BODY onclick="document.body.style.background='#F09EA0'">
-<h1>今天練習的jave script</h1>
-<button onclick="sayhi()">按下我 解鎖神秘禮包</button>
-<script>
+        /* 1. Coin Fall Keyframes */
+        @keyframes coinFall {
+            0% {
+                transform: translateY(-50px) rotateY(0deg) scale(0.8);
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 50px)) rotateY(1080deg) scale(1.1);
+                opacity: 0;
+            }
+        }
+        .animate-coin {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            animation: coinFall 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
 
-function sayhi()
-{
-alert("歡迎來到sss級副本--白客帝國，請努力寫程式，直到你成功用程式養活自己");
+        /* 2. Banknote Fall Keyframes */
+        @keyframes noteFall {
+            0% {
+                transform: translateY(-60px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.8);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(25vh) rotateX(45deg) rotateY(180deg) rotateZ(12deg) translateX(30px);
+            }
+            50% {
+                transform: translateY(50vh) rotateX(90deg) rotateY(360deg) rotateZ(-12deg) translateX(-25px);
+            }
+            75% {
+                transform: translateY(75vh) rotateX(135deg) rotateY(540deg) rotateZ(8deg) translateX(20px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 80px)) rotateX(180deg) rotateY(720deg) rotateZ(0deg) translateX(-10px) scale(1.05);
+                opacity: 0;
+            }
+        }
+        .animate-note {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            animation: noteFall 3.2s ease-in-out forwards;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border-radius: 3px;
+            backface-visibility: visible;
+        }
 
+        /* 3. Golden Nugget Fall Keyframes */
+        @keyframes nuggetFall {
+            0% {
+                transform: translateY(-70px) rotate(0deg) scale(0.6);
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 70px)) rotate(720deg) scale(1.1);
+                opacity: 0;
+            }
+        }
+        .animate-nugget {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            animation: nuggetFall 2.5s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+        }
 
+        /* Cute Spider Container */
+        #spiderContainer {
+            position: fixed;
+            top: -160px;
+            left: 40px;
+            z-index: 9990;
+            pointer-events: none;
+            transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .spider-thread {
+            width: 1.5px;
+            height: 140px;
+            background: linear-gradient(to bottom, rgba(197, 160, 89, 0.3), rgba(197, 160, 89, 0.9));
+        }
+        .spider-body {
+            width: 38px;
+            height: 32px;
+            background-color: #1C1917;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease;
+        }
+        @keyframes spiderWiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-15deg) scale(1.1); }
+            75% { transform: rotate(15deg) scale(1.1); }
+        }
+        .spider-dance {
+            animation: spiderWiggle 0.4s ease-in-out infinite;
+        }
+        .spider-eye {
+            width: 6px;
+            height: 6px;
+            background-color: #FFF;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+        }
+        .spider-eye::after {
+            content: '';
+            display: block;
+            width: 3px;
+            height: 3px;
+            background-color: #C5A059;
+            border-radius: 50%;
+            margin-top: 1.5px;
+            margin-left: 1.5px;
+        }
+        .spider-eye.left { left: 10px; }
+        .spider-eye.right { right: 10px; }
+        .spider-leg {
+            position: absolute;
+            width: 14px;
+            height: 2px;
+            background-color: #1C1917;
+            border-radius: 2px;
+        }
+        .spider-leg.l1 { top: 6px; left: -10px; transform: rotate(-25deg); }
+        .spider-leg.l2 { top: 14px; left: -12px; transform: rotate(-5deg); }
+        .spider-leg.l3 { top: 22px; left: -10px; transform: rotate(20deg); }
+        .spider-leg.r1 { top: 6px; right: -10px; transform: rotate(25deg); }
+        .spider-leg.r2 { top: 14px; right: -12px; transform: rotate(5deg); }
+        .spider-leg.r3 { top: 22px; right: -10px; transform: rotate(-20deg); }
 
-}
+        /* Gold Miner Retro Overlay CSS */
+        #minerContainer {
+            position: fixed;
+            bottom: -220px;
+            left: 20px;
+            z-index: 9998;
+            pointer-events: none;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #minerContainer.active {
+            transform: translateY(-220px);
+        }
+        .miner-bubble {
+            position: absolute;
+            top: -45px;
+            left: 20px;
+            background: #FFF;
+            border: 2px solid #1C1917;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            color: #C5A059;
+            box-shadow: 2px 2px 0px #1C1917;
+            white-space: nowrap;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+        }
+        .miner-bubble.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .miner-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #1C1917 transparent;
+            display: block;
+            width: 0;
+        }
 
+        /* Mechanical Claw extending upward */
+        #minerClawLine {
+            position: absolute;
+            bottom: 80px;
+            left: 60px;
+            width: 3px;
+            height: 0px;
+            background: #57534E;
+            transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: bottom center;
+        }
+        #minerClawHead {
+            position: absolute;
+            top: 0;
+            left: -12px;
+            width: 28px;
+            height: 20px;
+            color: #C5A059;
+            font-size: 18px;
+            transform: translateY(-100%);
+        }
 
+        #miniCartToast {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between selection:bg-lumia-goldlight selection:text-lumia-dark">
 
-</script>
-</BODY>
+    <!-- Canvas for Confetti -->
+    <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-[9999]"></canvas>
 
-</HTML>
+    <!-- Canvas for Top-Left Spider Web Drawing -->
+    <canvas id="webCanvas" class="fixed top-0 left-0 w-[360px] h-[360px] pointer-events-none z-[9988]"></canvas>
+
+    <!-- Spider Animation Overlay -->
+    <div id="spiderContainer">
+        <div class="spider-thread"></div>
+        <div class="spider-body" id="spiderBody">
+            <div class="spider-eye left"></div>
+            <div class="spider-eye right"></div>
+            <div class="spider-leg l1"></div>
+            <div class="spider-leg l2"></div>
+            <div class="spider-leg l3"></div>
+            <div class="spider-leg r1"></div>
+            <div class="spider-leg r2"></div>
+            <div class="spider-leg r3"></div>
+        </div>
+    </div>
+
+    <!-- Retro Gold Miner Easter Egg Container -->
+    <div id="minerContainer" class="flex flex-col items-center">
+        <!-- Dialog Bubble -->
+        <div class="miner-bubble" id="minerBubble">JACKPOT! 💎</div>
+        
+        <!-- Claw Container -->
+        <div id="minerClawLine">
+            <div id="minerClawHead"><i class="fa-solid fa-anchor"></i></div>
+        </div>
+
+        <!-- Miner Character Graphic -->
+        <div class="relative w-32 h-32 bg-amber-100 rounded-t-full border-4 border-lumia-dark p-2 flex flex-col items-center justify-end shadow-2xl">
+            <!-- Miner Hat with Headlamp -->
+            <div class="absolute top-2 w-20 h-6 bg-yellow-600 rounded-t-lg border-2 border-lumia-dark flex justify-center items-center">
+                <div class="w-4 h-4 bg-yellow-300 rounded-full border border-lumia-dark animate-pulse shadow-[0_0_8px_#EAB308]"></div>
+            </div>
+            <!-- Beard & Eyes -->
+            <div class="text-center font-bold text-xs text-lumia-dark mt-6">
+                <div class="flex space-x-3 justify-center text-sm"><span>👀</span></div>
+                <div class="bg-amber-800 text-white px-2 py-0.5 rounded mt-1 text-[10px]">🧔 鬍子阿伯</div>
+            </div>
+            <!-- Denim Dungarees -->
+            <div class="w-24 h-10 bg-blue-700 rounded-t-md border-t-2 border-lumia-dark text-[8px] text-white flex items-center justify-center font-pixel">
+                MINER
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-lumia-dark text-lumia-bg text-xs tracking-widest text-center py-2 px-4 uppercase">
+        ✨ 歡慶品牌季：全館消費滿 NT$2,500 即享尊榮免費包裝與全台免運
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-lumia-bg/90 backdrop-blur-md border-b border-lumia-sand/50 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden text-lumia-dark p-2 focus:outline-none">
+                <i class="fa-solid fa-bars-staggered text-xl"></i>
+            </button>
+
+            <!-- Brand Logo -->
+            <a href="#" class="flex flex-col items-center group">
+                <span class="font-serif-title text-2xl sm:text-3xl tracking-[0.25em] font-light text-lumia-dark group-hover:text-lumia-gold transition-colors duration-300">LÙMIA</span>
+                <span class="text-[9px] tracking-[0.3em] uppercase text-lumia-stone -mt-1">Studio</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex space-x-8 text-sm tracking-widest font-light text-lumia-dark">
+                <a href="#shop" class="hover:text-lumia-gold transition-colors duration-200 py-1 border-b border-transparent hover:border-lumia-gold">所有項鍊</a>
+                <a href="#popular" class="hover:text-lumia-gold transition-colors duration-200 py-1 border-b border-transparent hover:border-lumia-gold">熱銷系列</a>
+                <a href="#about" class="hover:text-lumia-gold transition-colors duration-200 py-1 border-b border-transparent hover:border-lumia-gold">品牌故事</a>
+                <a href="#reviews" class="hover:text-lumia-gold transition-colors duration-200 py-1 border-b border-transparent hover:border-lumia-gold">顧客評價</a>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-5 text-lumia-dark">
+                <button onclick="alert('搜尋功能已準備就緒，請輸入關聯關鍵字！')" class="hover:text-lumia-gold transition-colors p-1" title="搜尋">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+                <button onclick="alert('開啟您的願望收藏清單')" class="hover:text-lumia-gold transition-colors p-1 relative" title="收藏清單">
+                    <i class="fa-regular fa-heart text-lg"></i>
+                    <span id="wishlistCount" class="hidden absolute -top-1.5 -right-2 bg-lumia-gold text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium">0</span>
+                </button>
+                <button onclick="toggleCartModal()" class="hover:text-lumia-gold transition-colors p-1 relative" title="購物車">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cartBadge" class="hidden absolute -top-1.5 -right-2 bg-lumia-dark text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-lumia-bg border-b border-lumia-sand px-6 py-6 transition-all">
+            <nav class="flex flex-col space-y-4 text-center tracking-widest text-sm">
+                <a href="#shop" onclick="closeMobileMenu()" class="py-2 border-b border-lumia-sand/40">所有項鍊</a>
+                <a href="#popular" onclick="closeMobileMenu()" class="py-2 border-b border-lumia-sand/40">熱銷系列</a>
+                <a href="#about" onclick="closeMobileMenu()" class="py-2 border-b border-lumia-sand/40">品牌故事</a>
+                <a href="#reviews" onclick="closeMobileMenu()" class="py-2">顧客評價</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="relative bg-lumia-card/50 overflow-hidden py-16 lg:py-24 border-b border-lumia-sand/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-6 text-center lg:text-left z-10">
+                    <div class="inline-block px-3 py-1 bg-lumia-sand/50 rounded-full text-xs tracking-widest text-lumia-stone uppercase">
+                        2026 SS Fine Jewelry Collection
+                    </div>
+                    <h1 class="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-light text-lumia-dark leading-tight">
+                        靈魂的輕柔依託，<br>
+                        <span class="italic font-normal text-lumia-gold">為日常點綴優雅光芒</span>
+                    </h1>
+                    <p class="text-lumia-stone font-light leading-relaxed text-sm sm:text-base max-w-md mx-auto lg:mx-0">
+                        簡約不意味著平凡，而是去蕪存菁後的純粹。每一條 LÙMIA 項鍊，皆採用精選金屬與天然珍珠手作打造。
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#shop" class="inline-flex items-center justify-center px-8 py-3.5 bg-lumia-dark text-lumia-bg text-sm tracking-widest hover:bg-lumia-gold transition-colors duration-300 shadow-sm rounded-none">
+                            探索精品系列 <i class="fa-solid fa-arrow-right-long ml-3 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="aspect-[4/5] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl relative">
+                            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop" 
+                                 alt="LÙMIA Gold Necklace" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow" id="shop">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <span class="text-xs tracking-[0.3em] uppercase text-lumia-gold font-medium">Curated Necklaces</span>
+            <h2 class="font-serif-title text-3xl sm:text-4xl text-lumia-dark font-light">經典與新作系列</h2>
+            <div class="w-12 h-[1px] bg-lumia-gold mx-auto"></div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center pb-8 border-b border-lumia-sand gap-6">
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3" id="categoryFilters">
+                <button onclick="filterCategory('all')" class="cat-btn active border border-lumia-dark bg-lumia-dark text-white px-4 py-2 text-xs tracking-wider transition-all duration-200">
+                    全部 (All)
+                </button>
+                <button onclick="filterCategory('choker')" class="cat-btn border border-lumia-sand bg-white text-lumia-dark hover:border-lumia-dark px-4 py-2 text-xs tracking-wider transition-all duration-200">
+                    鎖骨鏈 (Chokers)
+                </button>
+                <button onclick="filterCategory('pearl')" class="cat-btn border border-lumia-sand bg-white text-lumia-dark hover:border-lumia-dark px-4 py-2 text-xs tracking-wider transition-all duration-200">
+                    珍珠項鍊 (Pearl)
+                </button>
+                <button onclick="filterCategory('pendant')" class="cat-btn border border-lumia-sand bg-white text-lumia-dark hover:border-lumia-dark px-4 py-2 text-xs tracking-wider transition-all duration-200">
+                    吊墜項鍊 (Pendant)
+                </button>
+            </div>
+
+            <div class="flex items-center space-x-2 text-xs text-lumia-stone">
+                <label for="sortSelect" class="whitespace-nowrap">排序方式：</label>
+                <select id="sortSelect" onchange="handleSortChange()" class="bg-white border border-lumia-sand rounded-none px-3 py-2 text-xs text-lumia-dark focus:outline-none focus:border-lumia-gold cursor-pointer">
+                    <option value="featured">熱門推薦</option>
+                    <option value="price-low">價格：由低到高</option>
+                    <option value="price-high">價格：由高到低</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mt-10">
+            <!-- Dynamic Ingestion -->
+        </div>
+
+    </main>
+
+    <footer class="bg-lumia-bg border-t border-lumia-sand/60 py-12 text-lumia-stone text-xs mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <span class="font-serif-title text-2xl tracking-[0.2em] font-light text-lumia-dark">LÙMIA</span>
+                <p class="font-light text-lumia-stone leading-relaxed">專注於現代女性的微光極簡飾品，用質感語彙定義專屬美感。</p>
+            </div>
+            <div class="space-y-2">
+                <h5 class="text-lumia-dark font-medium uppercase tracking-wider mb-3">商品分類</h5>
+                <p><a href="#shop" onclick="filterCategory('choker')" class="hover:text-lumia-gold">鎖骨鏈系列</a></p>
+                <p><a href="#shop" onclick="filterCategory('pearl')" class="hover:text-lumia-gold">巴洛克珍珠項鍊</a></p>
+            </div>
+            <div class="space-y-2">
+                <h5 class="text-lumia-dark font-medium uppercase tracking-wider mb-3">顧客服務</h5>
+                <p><a href="javascript:void(0)" onclick="alert('全館皆附贈精品提袋與擦拭布')" class="hover:text-lumia-gold">禮盒包裝說明</a></p>
+            </div>
+            <div class="space-y-3">
+                <h5 class="text-lumia-dark font-medium uppercase tracking-wider mb-3">關注我們</h5>
+                <div class="flex space-x-4 text-base text-lumia-dark">
+                    <a href="#" class="hover:text-lumia-gold"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-lumia-gold"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-lumia-sand/40 flex justify-between items-center text-[11px]">
+            <p>&copy; 2026 LÙMIA Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Slide-over Shopping Cart Drawer -->
+    <div id="cartModal" class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0">
+        <div id="cartBackdrop" onclick="toggleCartModal()" class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-lumia-bg shadow-2xl flex flex-col pointer-events-auto transform translate-x-full transition-transform duration-300 ease-in-out" id="cartPanel">
+                <div class="p-6 border-b border-lumia-sand flex items-center justify-between">
+                    <h3 class="font-serif-title text-xl text-lumia-dark font-normal">購物袋 (<span id="cartCountHeader">0</span>)</h3>
+                    <button onclick="toggleCartModal()" class="text-lumia-stone hover:text-lumia-dark">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                <div id="cartItemsContainer" class="flex-grow overflow-y-auto p-6 space-y-6"></div>
+                <div class="p-6 border-t border-lumia-sand bg-white space-y-4">
+                    <div class="flex justify-between text-sm font-medium text-lumia-dark pt-2 border-t border-lumia-sand">
+                        <span>總計 (Total)</span>
+                        <span id="cartTotal" class="text-base font-serif-title font-semibold text-lumia-gold">NT$ 0</span>
+                    </div>
+                    <button onclick="handleCheckout()" class="w-full bg-lumia-dark text-white py-3.5 text-xs tracking-widest uppercase hover:bg-lumia-gold transition-colors duration-300 font-medium">
+                        前往結帳
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Mini Cart Tooltip Notification -->
+    <div id="miniCartToast" class="fixed top-24 right-6 z-50 max-w-sm w-full bg-white border border-lumia-sand shadow-2xl rounded-none p-4 transform translate-y-[-20px] opacity-0 pointer-events-none">
+        <div class="flex items-center justify-between border-b border-lumia-sand/40 pb-2 mb-3">
+            <div class="flex items-center space-x-2 text-lumia-gold text-xs font-semibold uppercase tracking-wider">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>已加入購物袋</span>
+            </div>
+            <button onclick="closeMiniCartToast()" class="text-lumia-stone hover:text-lumia-dark text-xs"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="miniCartContent" class="flex space-x-4 items-center"></div>
+        <button onclick="toggleCartModal(); closeMiniCartToast();" class="mt-3 w-full bg-lumia-dark text-white text-[11px] py-2 uppercase tracking-widest hover:bg-lumia-gold transition-colors">
+            查看購物袋並結帳
+        </button>
+    </div>
+
+    <!-- Quick View Product Modal -->
+    <div id="quickViewModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-lumia-bg max-w-3xl w-full rounded-none overflow-hidden shadow-2xl relative transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="quickViewContent">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 text-lumia-dark hover:text-lumia-gold z-10 p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div id="quickViewBody" class="grid grid-cols-1 md:grid-cols-2"></div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 'lum-01',
+                name: '晨曦巴洛克珍珠鎖骨鏈',
+                category: 'pearl',
+                price: 2680,
+                material: '天然巴洛克異形珍珠 / 925純銀鍍18K金',
+                image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop',
+                hoverImage: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop',
+                description: '獨一無二的天然巴洛克珍珠，溫潤無瑕的光澤感，貼合鎖骨線條。',
+            },
+            {
+                id: 'lum-02',
+                name: '極細微光18K金蛇骨鏈',
+                category: 'choker',
+                price: 1980,
+                material: '18K厚包金 / 低敏合金',
+                image: 'https://images.unsplash.com/photo-1611591475155-4282faa23235?q=80&w=800&auto=format&fit=crop',
+                hoverImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop',
+                description: '宛如第二層肌膚般貼合流暢，極細平滑蛇骨鍛造，展現奢華金屬光澤。',
+            },
+            {
+                id: 'lum-03',
+                name: '星弧幾何銀吊墜項鍊',
+                category: 'pendant',
+                price: 2250,
+                material: '925抗氧化純銀',
+                image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop',
+                hoverImage: 'https://images.unsplash.com/photo-1611591475155-4282faa23235?q=80&w=800&auto=format&fit=crop',
+                description: '簡約圓弧拋光設計，捕捉夜空微光的靈感，純銀質感冷冽優雅。',
+            },
+            {
+                id: 'lum-04',
+                name: '月光石微滴K金項鍊',
+                category: 'pendant',
+                price: 3120,
+                material: '天然月光石 / 18K黃金包金',
+                image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop',
+                hoverImage: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop',
+                description: '水滴形切面天然月光石，透出淡淡藍暈微光，帶來溫柔舒緩的能量。',
+            },
+            {
+                id: 'lum-05',
+                name: '法式雙層疊搭珍珠鍊',
+                category: 'pearl',
+                price: 3450,
+                material: '日本Akoya近圓珍珠 / 18K金',
+                image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop',
+                hoverImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop',
+                description: '結合細精鍊與小顆珍珠的層次感，一條即可完成精心規劃的法式優雅疊搭。',
+            },
+            {
+                id: 'lum-06',
+                name: '極簡莫比烏斯環吊墜',
+                category: 'pendant',
+                price: 2480,
+                material: '925純銀鍍白金',
+                image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop',
+                hoverImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop',
+                description: '代表無限愛意與循環的莫比烏斯環，霧面與亮面交錯拋光，低調有哲學質感。',
+            }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let currentFilter = 'all';
+        let currentSort = 'featured';
+        let totalAddToCartClicks = 0;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            initConfettiCanvas();
+            initWebCanvas();
+        });
+
+        /* --- 1. CONFETTI BURST --- */
+        let canvas, ctx;
+        let confettiParticles = [];
+
+        function initConfettiCanvas() {
+            canvas = document.getElementById('confettiCanvas');
+            ctx = canvas.getContext('2d');
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            requestAnimationFrame(updateConfetti);
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function triggerConfettiBurst(x, y) {
+            const colors = ['#C5A059', '#DFCB9B', '#E7DFD5', '#1C1917', '#F5F1EB'];
+            const directions = [-1, 1];
+            
+            directions.forEach(dir => {
+                for (let i = 0; i < 30; i++) {
+                    confettiParticles.push({
+                        x: x + (dir * 15),
+                        y: y,
+                        vx: (Math.random() * 8 + 2) * dir,
+                        vy: -(Math.random() * 10 + 4),
+                        size: Math.random() * 7 + 4,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        rotation: Math.random() * 360,
+                        rotationSpeed: (Math.random() - 0.5) * 10,
+                        opacity: 1,
+                        gravity: 0.35
+                    });
+                }
+            });
+        }
+
+        function updateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = confettiParticles.length - 1; i >= 0; i--) {
+                let p = confettiParticles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.rotation += p.rotationSpeed;
+                p.opacity -= 0.015;
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.globalAlpha = Math.max(0, p.opacity);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+
+                if (p.opacity <= 0 || p.y > canvas.height) {
+                    confettiParticles.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(updateConfetti);
+        }
+
+        /* --- STREAMING_CHUNK:Implementing falling physics logic (Coins, Notes, Golden Nuggets)... --- */
+        const banknotes = [
+            { name: 'USD $100', code: '$100', symbol: '$', bg: 'linear-gradient(135deg, #1e4620, #2e7d32)', border: '#81c784', text: '#e8f5e9' },
+            { name: 'EUR €50', code: '€50', symbol: '€', bg: 'linear-gradient(135deg, #e65100, #ff9800)', border: '#ffe0b2', text: '#fff3e0' },
+            { name: 'JPY ¥10000', code: '¥10000', symbol: '¥', bg: 'linear-gradient(135deg, #4a148c, #7b1fa2)', border: '#e1bee7', text: '#f3e5f5' },
+            { name: 'TWD NT$1000', code: 'NT$1000', symbol: '$', bg: 'linear-gradient(135deg, #0d47a1, #1e88e5)', border: '#bbdefb', text: '#e3f2fd' },
+            { name: 'GBP £50', code: '£50', symbol: '£', bg: 'linear-gradient(135deg, #b71c1c, #e53935)', border: '#ffcdd2', text: '#ffebee' }
+        ];
+
+        function triggerProgressiveFallingItems() {
+            // Click 10+: Falling Golden Nuggets
+            if (totalAddToCartClicks >= 10) {
+                const nuggetCount = 14;
+                for (let k = 0; k < nuggetCount; k++) {
+                    setTimeout(() => {
+                        const nugget = document.createElement('div');
+                        nugget.className = 'animate-nugget flex items-center justify-center';
+                        nugget.style.left = `${Math.random() * 85 + 5}vw`;
+                        
+                        // Solid Gold Bar / Nugget HTML
+                        nugget.innerHTML = `
+                            <div class="w-12 h-8 bg-gradient-to-tr from-yellow-700 via-yellow-400 to-amber-200 rounded-sm border-2 border-yellow-200 shadow-[0_0_15px_rgba(234,179,8,0.8)] flex items-center justify-center transform rotate-12">
+                                <span class="text-[9px] font-bold text-amber-950 font-serif tracking-tighter">999.9 GOLD</span>
+                            </div>
+                        `;
+                        document.body.appendChild(nugget);
+
+                        setTimeout(() => nugget.remove(), 2600);
+                    }, k * 130);
+                }
+            } 
+            // Click 8 - 9: Banknotes + Coins
+            else if (totalAddToCartClicks >= 8) {
+                const coinCount = 8;
+                for (let i = 0; i < coinCount; i++) {
+                    setTimeout(() => {
+                        const coin = document.createElement('div');
+                        coin.className = 'animate-coin text-lumia-gold text-2xl';
+                        coin.style.left = `${Math.random() * 85 + 5}vw`;
+                        coin.innerHTML = `<i class="fa-solid fa-coins filter drop-shadow-md"></i>`;
+                        document.body.appendChild(coin);
+                        setTimeout(() => coin.remove(), 2300);
+                    }, i * 140);
+                }
+
+                const noteCount = 10;
+                for (let j = 0; j < noteCount; j++) {
+                    setTimeout(() => {
+                        const template = banknotes[Math.floor(Math.random() * banknotes.length)];
+                        const note = document.createElement('div');
+                        note.className = 'animate-note flex items-center justify-between px-2 py-1 select-none';
+                        note.style.left = `${Math.random() * 85 + 5}vw`;
+                        note.style.width = '90px';
+                        note.style.height = '48px';
+                        note.style.background = template.bg;
+                        note.style.border = `1px solid ${template.border}`;
+                        note.style.color = template.text;
+
+                        note.innerHTML = `
+                            <div class="flex flex-col justify-between h-full leading-none">
+                                <span class="text-[9px] font-bold tracking-tighter opacity-90">${template.code}</span>
+                                <span class="text-[7px] font-serif tracking-widest opacity-75">LÙMIA BANK</span>
+                            </div>
+                            <div class="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center text-xs font-bold bg-white/10">
+                                ${template.symbol}
+                            </div>
+                        `;
+                        document.body.appendChild(note);
+                        setTimeout(() => note.remove(), 3300);
+                    }, j * 180);
+                }
+            } 
+            // Click 1 - 7: Classic Coin Rain
+            else {
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(() => {
+                        const coin = document.createElement('div');
+                        coin.className = 'animate-coin text-lumia-gold text-2xl';
+                        coin.style.left = `${Math.random() * 85 + 5}vw`;
+                        coin.innerHTML = `<i class="fa-solid fa-coins filter drop-shadow-md"></i>`;
+                        document.body.appendChild(coin);
+                        setTimeout(() => coin.remove(), 2300);
+                    }, i * 140);
+                }
+            }
+        }
+
+        /* --- 3. SPIDER WEB & "LOVE YOU" CANVAS --- */
+        let webCanvas, webCtx;
+        let webSparkles = [];
+
+        function initWebCanvas() {
+            webCanvas = document.getElementById('webCanvas');
+            webCtx = webCanvas.getContext('2d');
+            webCanvas.width = 360;
+            webCanvas.height = 360;
+            requestAnimationFrame(animateWebSparkles);
+        }
+
+        function drawProgressiveWeb(stage) {
+            webCtx.clearRect(0, 0, webCanvas.width, webCanvas.height);
+            const cx = 40;
+            const cy = 0;
+
+            webCtx.save();
+            webCtx.strokeStyle = 'rgba(197, 160, 89, 0.45)';
+            webCtx.lineWidth = 1.2;
+
+            const maxRays = Math.min(8, stage * 2);
+            const rayAngles = [15, 30, 45, 60, 75, 85];
+            
+            for (let i = 0; i < maxRays; i++) {
+                const angle = (rayAngles[i] || (i * 12 + 10)) * (Math.PI / 180);
+                const rayLength = 120 + stage * 30;
+                const ex = cx + Math.cos(angle) * rayLength;
+                const ey = cy + Math.sin(angle) * rayLength;
+
+                webCtx.beginPath();
+                webCtx.moveTo(cx, cy);
+                webCtx.lineTo(ex, ey);
+                webCtx.stroke();
+            }
+
+            const spiralRings = Math.min(5, stage + 1);
+            for (let r = 1; r <= spiralRings; r++) {
+                const radius = r * (18 + stage * 4);
+                webCtx.beginPath();
+                for (let i = 0; i < maxRays; i++) {
+                    const angle = (rayAngles[i] || (i * 12 + 10)) * (Math.PI / 180);
+                    const px = cx + Math.cos(angle) * radius;
+                    const py = cy + Math.sin(angle) * radius;
+                    if (i === 0) webCtx.moveTo(px, py);
+                    else webCtx.lineTo(px, py);
+                }
+                webCtx.stroke();
+            }
+
+            // Click 5+: Crisp & Elegant "LOVE YOU" Silk Text
+            if (stage >= 5) {
+                const textX = 65;
+                const textY = 140;
+
+                webCtx.save();
+                webCtx.font = "bold 28px 'Cormorant Garamond', serif";
+                webCtx.strokeStyle = "rgba(28, 25, 23, 0.85)";
+                webCtx.lineWidth = 4;
+                webCtx.lineJoin = "round";
+                webCtx.strokeText("LOVE YOU", textX, textY);
+
+                webCtx.fillStyle = '#C5A059';
+                webCtx.shadowColor = 'rgba(197, 160, 89, 0.5)';
+                webCtx.shadowBlur = 6;
+                webCtx.fillText("LOVE YOU", textX, textY);
+                webCtx.restore();
+
+                webCtx.save();
+                webCtx.strokeStyle = '#C5A059';
+                webCtx.lineWidth = 2;
+                webCtx.shadowColor = 'rgba(28, 25, 23, 0.4)';
+                webCtx.shadowBlur = 3;
+                webCtx.beginPath();
+                webCtx.moveTo(60, 150);
+                webCtx.bezierCurveTo(90, 165, 140, 165, 175, 150);
+                webCtx.stroke();
+                webCtx.restore();
+
+                if (webSparkles.length < 15) {
+                    webSparkles.push({
+                        x: 50 + Math.random() * 140,
+                        y: 165 + Math.random() * 25,
+                        vx: (Math.random() - 0.5) * 0.8,
+                        vy: Math.random() * 0.6 + 0.2,
+                        size: Math.random() * 2 + 1,
+                        alpha: 1,
+                        color: Math.random() > 0.5 ? '#DFCB9B' : '#FFFFFF'
+                    });
+                }
+            }
+
+            webCtx.restore();
+        }
+
+        function animateWebSparkles() {
+            if (totalAddToCartClicks >= 5 && webCtx) {
+                drawProgressiveWeb(5);
+                for (let i = webSparkles.length - 1; i >= 0; i--) {
+                    let s = webSparkles[i];
+                    s.x += s.vx;
+                    s.y += s.vy;
+                    s.alpha -= 0.015;
+
+                    webCtx.save();
+                    webCtx.globalAlpha = Math.max(0, s.alpha);
+                    webCtx.fillStyle = s.color;
+                    webCtx.beginPath();
+                    webCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                    webCtx.fill();
+                    webCtx.restore();
+
+                    if (s.alpha <= 0) webSparkles.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(animateWebSparkles);
+        }
+
+        /* --- STREAMING_CHUNK:Implementing Gold Miner claw extension and dialog logic... --- */
+        let minerTimer = null;
+        function triggerRetroMinerEasterEgg() {
+            if (totalAddToCartClicks < 10) return;
+
+            const miner = document.getElementById('minerContainer');
+            const bubble = document.getElementById('minerBubble');
+            const clawLine = document.getElementById('minerClawLine');
+
+            const phrases = ["JACKPOT!", "GOLDEN HOUR!", "BIG WIN! 💰", "GOT GOLD!", "999.9 GOLD!"];
+            bubble.innerText = phrases[Math.floor(Math.random() * phrases.length)];
+
+            miner.classList.add('active');
+
+            // Extend claw upward to catch gold nuggets
+            setTimeout(() => {
+                clawLine.style.height = '180px';
+                setTimeout(() => {
+                    bubble.classList.add('show');
+                    clawLine.style.height = '0px';
+                }, 600);
+            }, 300);
+
+            clearTimeout(minerTimer);
+            minerTimer = setTimeout(() => {
+                bubble.classList.remove('show');
+                miner.classList.remove('active');
+            }, 4500);
+        }
+
+        /* --- 5. SPIDER DROP ANIMATION --- */
+        let spiderTimer = null;
+        function triggerSpiderDrop() {
+            const spider = document.getElementById('spiderContainer');
+            const spiderBody = document.getElementById('spiderBody');
+
+            const dropDistance = totalAddToCartClicks >= 5 ? 260 : 210;
+            spider.style.transform = `translateY(${dropDistance}px)`;
+
+            drawProgressiveWeb(totalAddToCartClicks);
+
+            clearTimeout(spiderTimer);
+
+            if (totalAddToCartClicks >= 5) {
+                spiderBody.classList.add('spider-dance');
+                spiderTimer = setTimeout(() => {
+                    spiderBody.classList.remove('spider-dance');
+                    spider.style.transform = 'translateY(0px)';
+                }, 4000);
+            } else {
+                spiderTimer = setTimeout(() => {
+                    spider.style.transform = 'translateY(0px)';
+                }, 2500);
+            }
+        }
+
+        /* --- 6. MINI CART TOAST & UI RENDERERS --- */
+        let miniCartTimer = null;
+        function showMiniCartToast(product, length) {
+            const toast = document.getElementById('miniCartToast');
+            const content = document.getElementById('miniCartContent');
+
+            content.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="w-12 h-14 object-cover bg-lumia-card">
+                <div class="text-xs space-y-0.5">
+                    <h5 class="font-medium text-lumia-dark">${product.name}</h5>
+                    <p class="text-[11px] text-lumia-stone">長度：${length}</p>
+                    <p class="font-semibold text-lumia-gold">NT$ ${product.price.toLocaleString()}</p>
+                </div>
+            `;
+
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-20px]');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            clearTimeout(miniCartTimer);
+            miniCartTimer = setTimeout(() => {
+                closeMiniCartToast();
+            }, 4000);
+        }
+
+        function closeMiniCartToast() {
+            const toast = document.getElementById('miniCartToast');
+            toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-20px]');
+            toast.classList.remove('opacity-100', 'translate-y-0');
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+
+            let filtered = products.filter(p => {
+                if (currentFilter === 'all') return true;
+                return p.category === currentFilter;
+            });
+
+            if (currentSort === 'price-low') filtered.sort((a, b) => a.price - b.price);
+            if (currentSort === 'price-high') filtered.sort((a, b) => b.price - a.price);
+
+            filtered.forEach(p => {
+                const isWishlisted = wishlist.includes(p.id);
+                const card = document.createElement('div');
+                card.className = 'group flex flex-col justify-between space-y-4';
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-[4/5] bg-lumia-card cursor-pointer" onclick="openQuickView('${p.id}')">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                        <img src="${p.hoverImage}" alt="${p.name}" class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out">
+                        
+                        <button onclick="event.stopPropagation(); toggleWishlist('${p.id}')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur flex items-center justify-center text-lumia-dark hover:text-lumia-gold transition-colors shadow-sm">
+                            <i class="${isWishlisted ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart text-sm"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-1">
+                        <div class="text-[11px] text-lumia-stone tracking-wider">${p.material}</div>
+                        <h3 class="font-serif-title text-lg text-lumia-dark font-normal">
+                            <a href="javascript:void(0)" onclick="openQuickView('${p.id}')">${p.name}</a>
+                        </h3>
+                        <div class="text-sm font-medium text-lumia-dark">NT$ ${p.price.toLocaleString()}</div>
+                    </div>
+
+                    <button onclick="handleAddToCartEvent(event, '${p.id}', '40cm')" class="add-to-cart-btn w-full border border-lumia-dark text-lumia-dark py-2.5 text-xs tracking-widest uppercase hover:bg-lumia-dark hover:text-white transition-colors duration-300">
+                        加入購物袋
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function handleAddToCartEvent(event, productId, length = '40cm') {
+            totalAddToCartClicks += 1;
+
+            const btn = event.currentTarget;
+            const rect = btn.getBoundingClientRect();
+            const btnCenterX = rect.left + rect.width / 2;
+            const btnCenterY = rect.top + rect.height / 2;
+
+            // 1. Confetti Burst
+            triggerConfettiBurst(btnCenterX, btnCenterY);
+
+            // 2. Progressive Item Drop (Coins -> Banknotes -> Gold Nuggets)
+            setTimeout(triggerProgressiveFallingItems, 150);
+
+            // 3. Spider Progressive Weaving & Drop
+            triggerSpiderDrop();
+
+            // 4. Click 10+: Gold Miner Easter Egg
+            if (totalAddToCartClicks >= 10) {
+                triggerRetroMinerEasterEgg();
+            }
+
+            // 5. Cart Management
+            addToCart(productId, length);
+        }
+
+        function addToCart(productId, length = '40cm') {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingIndex = cart.findIndex(item => item.id === productId && item.length === length);
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({ ...product, length: length, quantity: 1 });
+            }
+
+            updateCartUI();
+            showMiniCartToast(product, length);
+        }
+
+        function updateQuantity(id, length, delta) {
+            const index = cart.findIndex(item => item.id === id && item.length === length);
+            if (index > -1) {
+                cart[index].quantity += delta;
+                if (cart[index].quantity <= 0) cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const badge = document.getElementById('cartBadge');
+            const countHeader = document.getElementById('cartCountHeader');
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (totalCount > 0) {
+                badge.innerText = totalCount;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+            countHeader.innerText = totalCount;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 space-y-3">
+                        <i class="fa-solid fa-bag-shopping text-3xl text-lumia-sand"></i>
+                        <p class="text-xs text-lumia-stone">您的購物袋目前是空的</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="flex space-x-4 border-b border-lumia-sand/50 pb-4 items-center">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-20 object-cover bg-lumia-card">
+                        <div class="flex-grow space-y-1">
+                            <h4 class="text-xs font-medium text-lumia-dark">${item.name}</h4>
+                            <div class="text-[11px] text-lumia-stone">長度：${item.length}</div>
+                            <div class="text-xs font-semibold text-lumia-dark">NT$ ${item.price.toLocaleString()}</div>
+                            <div class="flex items-center space-x-2 pt-1">
+                                <button onclick="updateQuantity('${item.id}', '${item.length}', -1)" class="w-5 h-5 bg-lumia-card flex items-center justify-center text-xs">-</button>
+                                <span class="text-xs font-medium px-2">${item.quantity}</span>
+                                <button onclick="updateQuantity('${item.id}', '${item.length}', 1)" class="w-5 h-5 bg-lumia-card flex items-center justify-center text-xs">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cartTotal').innerText = `NT$ ${total.toLocaleString()}`;
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cartModal');
+            const panel = document.getElementById('cartPanel');
+            modal.classList.toggle('opacity-0');
+            modal.classList.toggle('pointer-events-none');
+            panel.classList.toggle('translate-x-full');
+        }
+
+        function openQuickView(productId) {
+            const p = products.find(prod => prod.id === productId);
+            if (!p) return;
+
+            const modal = document.getElementById('quickViewModal');
+            const body = document.getElementById('quickViewBody');
+
+            body.innerHTML = `
+                <div class="aspect-square bg-lumia-card overflow-hidden">
+                    <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8 flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <span class="text-xs text-lumia-gold uppercase tracking-widest">${p.category}</span>
+                        <h3 class="font-serif-title text-2xl text-lumia-dark">${p.name}</h3>
+                        <div class="text-lg font-medium text-lumia-dark">NT$ ${p.price.toLocaleString()}</div>
+                        <p class="text-xs text-lumia-stone leading-relaxed font-light pt-2 border-t border-lumia-sand">
+                            ${p.description}
+                        </p>
+                    </div>
+
+                    <button onclick="handleAddToCartEvent(event, '${p.id}', '40cm'); closeQuickView();" class="w-full bg-lumia-dark text-white py-3 text-xs tracking-widest uppercase hover:bg-lumia-gold transition-colors">
+                        加入購物袋
+                    </button>
+                </div>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.getElementById('quickViewContent').classList.remove('scale-95');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('quickViewContent').classList.add('scale-95');
+        }
+
+        function filterCategory(cat) {
+            currentFilter = cat;
+            renderProducts();
+        }
+
+        function handleSortChange() {
+            currentSort = document.getElementById('sortSelect').value;
+            renderProducts();
+        }
+
+        function handleCheckout() {
+            if (cart.length === 0) return;
+            alert('感謝您的購買！已成功結帳。');
+            cart = [];
+            updateCartUI();
+            toggleCartModal();
+        }
+
+        function toggleWishlist(id) {
+            const idx = wishlist.indexOf(id);
+            if (idx > -1) wishlist.splice(idx, 1);
+            else wishlist.push(id);
+            renderProducts();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
